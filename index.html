@@ -154,9 +154,88 @@
                 <p class="lead">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               </div>
               <!-- how to  -->
+              <style>
+                .red { color: red; text-decoration: none; }
+                .blue { color: blue;}
+              </style>
               <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                <h3 class="display-4"> How to </h3>
-                <p class="lead">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <h3 class="display-4"> Как это работает? </h3>
+                <p class="lead">
+                  Это программное обеспечение написано на С++ с использованием WinAPI. давайте Розберемся как оно работает! <br>
+                  Cначала включил необходимые модули для работы программы: </p>
+
+
+<div class="jumbotron">
+<pre> <code>
+#<a href="" class="red">include</a> &lt;windows.h&gt 
+#<a href="" class="red">include</a> &lt;tlhelp32.h&gt 
+</code></pre>
+</div>
+                <p class="lead">
+                  Работает это таким образом, что мы читаем и списываем в память данные с помощью функции <code> <a href="" class="blue">ReadProcessMemory(...)</a> </code>для чтения и <code> <a href="" class="blue">WriteProcessMemory(...)</a> </code> для записи.
+                </p>
+                <p class="lead"> ReadProcessMemory: </p>
+
+
+<div class="jumbotron"><pre> <code>
+BOOL <a href="" class="blue">ReadProcessMemory</a>( 
+  HANDLE  hProcess,
+  LPCVOID lpBaseAddress,
+  LPVOID  lpBuffer,
+  SIZE_T  nSize,
+  SIZE_T  *lpNumberOfBytesRead
+);
+</code></pre></div>
+              <p class="lead"> WriteProcessMemory: </p>
+
+
+<div class="jumbotron">             
+<pre> <code>
+BOOL <a href="" class="blue">WriteProcessMemory</a>( 
+    HANDLE hProcess,
+    LPVOID lpBaseAddress,
+    LPCVOID lpBuffer,
+    SIZE_T nSize,
+    SIZE_T* lpNumberOfBytesWritten
+  );
+</code></pre>
+</div>
+              <p class="lead"> Поочередно найдем нужные аргументы. Так, для начала у нас HANDLE hProcess:</p>
+<div class="jumbotron">  
+<pre><code>
+  HANDLE hProcess ; 
+  hProcess = <a href="" class="blue">OpenProcess</a>(PROCESS_ALL_ACCESS, 0, ProcessId); // ReadProcessMemory
+  hProcess = <a href="" class="blue">OpenProcess</a>((0x0008) | (0x0020) | (0x0400), 0, ProcessId); // WriteProcessMemory
+</code></pre> </div>
+              <p class="lead"> Дальее LPVOID lpBaseAddress - это идентификатор процесса(Process id). его можно найти используя <a href="" class="blue">FindWindowW</a> или написать функцию самом:</p>
+<div class="jumbotron">  
+<pre><code>
+  DWORD <a href="" class="blue">FindProcessId</a> (LPCTSTR ProcessName)            
+  {
+      PROCESSENTRY32 pt;
+      HANDLE hsnap = <a href="" class="blue">CreateToolhelp32Snapshot</a> (TH32CS_SNAPPROCESS, 0);
+      pt.dwSize = <a href="" class="red">sizeof</a> (PROCESSENTRY32);
+      <a href="" class="red">if</a>  ( <a href="" class="blue">Process32First</a> (hsnap, &pt)) { 
+        <a href="" class="red">do</a>  {
+            <a href="" class="red">if</a>  (!<a href="" class="blue">lstrcmpi</a> (pt.szExeFile, ProcessName)) {
+                <a href="" class="blue">CloseHandle</a> (hsnap);
+                <a href="" class="red">return</a>  pt.th32ProcessID;
+              }
+          } <a href="" class="red">while</a>  (Process32Next(hsnap, &pt));
+      }
+      
+      std::cout << "Process not found (return 0)" << std::endl;
+      <a href="" class="blue">CloseHandle</a> (hsnap); 
+      return 0;
+  }
+</code></pre> </div>
+              <p class="lead"> Мы дошли до адресу LPVOID lpBaseAddress. Это объект, указывающий на определенные данные, но не хранящий их. Например:</p>
+<div class="jumbotron">
+<pre><code>
+DWORD Address = 0x22fe00; // (LPVOID)Address
+</code></pre>
+</div>
+              <p class="lead"> Осталось только указать буфер и его размер. Буфер должен иметь тип как и у элемента, который вы читаете из памяти; размер буфера указывает с помощью <a href="" class="red">sizeof</a>(buffer)</p>
               </div>
             </div>
             <br> <br> <br>

@@ -148,7 +148,34 @@
               <!-- Instruction -->
               <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                 <h3 class="display-4"> Instruction </h3>
-                <p class="lead">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="lead">
+                  Здесь ты узнаешь как пользоваться CheatCraft. <br>
+                  Если ты правильно установил и настроил программу то после ее запуска ты увидишь полный перечень команд.  <br>
+                </p>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <h3>hack process</h3>
+                      <p class="lead">
+                        Сначала попробуй ввести "hack process" для вывода всех процессов и показа их идентификатора. 
+                        С этим ты узнаешь process_id нужной тебе программы. Это самая простая, но одна из самых важных команд.
+                      </p>
+                    </li>
+                    <li class="list-group-item">
+                      <h3>hack *process_id* in *address*</h3>
+                      <p class="lead">
+                        Перейдем к более сложной "hack *process_id* in *address*", 
+                        где process_id это идентификатор процесса, а address адрес в памяти. Где нам взять адрес? Ты можешь воспользоваться программой Cheat Engine.
+                        Ней довольно легко пользоваться и легко найти туториалы. Эта команда выведет тебе значение переменной по этому адресу.
+                      </p>
+                    </li>
+                    <li class="list-group-item">
+                      <h3> hack *process_id* where *address* = *value*</h3>
+                      <p class="lead">
+                        Это то же команда, но там ты читали из памяти, а здесь вводим новое значение (*value*). <br>
+                        <kbd>hack 6459 where 0x7ffc6ff8b834 = 100 </kbd>
+                      </p>
+                    </li>
+                  </ul>
               </div>
               <!-- how to  -->
               <style>

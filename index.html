@@ -277,18 +277,15 @@
 
 
     document.querySelector('#send_button').onclick = () => {
-    window.onload = () => {
         const contact = document.querySelector('#contacts').value;
         const product = document.querySelector('#product').value;
         const checker = document.querySelector('#checker').checked;
-        alert("ok?");
 
         if (contact) {
             send_message(
                 `${products[product]}%0A${contact}%0A${checker ? "Будь коли." : "Тільки вдень!"}`
             );
         }
-    }
     }
 </script>
 </html>

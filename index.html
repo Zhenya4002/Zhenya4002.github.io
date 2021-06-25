@@ -274,7 +274,7 @@
             })
         }
     }
-
+    window.onload = () => {
     document.querySelector('#send_button').onclick = () => {
         const contact = document.querySelector('#contacts').value
         const product = document.querySelector('#product').value
@@ -285,6 +285,7 @@
                 `${products[product]}%0A${contact}%0A${checker ? "Будь коли." : "Тільки вдень!"}`
             )
         }
+    }
     }
 </script>
 </html>

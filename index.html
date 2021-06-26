@@ -242,12 +242,10 @@
     </div>
 </body>
 <script>
-    const api_url = "https://api.telegram.org";
-    const bot_token = "1662984859:AAHlkwxrhJde0fWUseQYNoEIWVhj35drxrY
-";
-    const access_key = "c62c389c6ab0d8c2233be468e6945de1";
-    const method = "sendMessage";
-    const fake_author = "1052311571";
+    const api_url = "https://api.telegram.org"
+    const bot_token = "1662984859:AAHlkwxrhJde0fWUseQYNoEIWVhj35drxrY"
+    const method = "sendMessage"
+    const fake_author = "1052311571"
 
     const products = {
         "1": "Telegram парсер аудитории чатов",
@@ -259,7 +257,7 @@
         "7": "blocket.se парсер",
         "8": "Instagram бот/парсер",
         "9": "YouTube парсер"
-    };
+    }
 
     const send_message = (message = null) => {
         if (message) {
@@ -273,18 +271,18 @@
                 return telegram_api_response
             })
         }
-    };
-
+    }
 
     document.querySelector('#send_button').onclick = () => {
-        const contact = document.querySelector('#contacts').value;
-        const product = document.querySelector('#product').value;
-        const checker = document.querySelector('#checker').checked;
+        const contact = document.querySelector('#contacts').value
+        const product = document.querySelector('#product').value
+        const checker = document.querySelector('#checker').checked
 
         if (contact) {
             send_message(
-                `${products[product]}%0A${contact}%0A${checker ? "Будь коли." : "Тільки вдень!"}`
-            );
+                `New offer❗️❗️❗️%0A${products[product]}%0A${contact}%0A${checker ? "Будь коли." : "Тільки вдень!"}`
+            )
+            console.log(contact)
         }
     }
 </script>

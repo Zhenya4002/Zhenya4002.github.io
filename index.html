@@ -242,12 +242,12 @@
     </div>
 </body>
 <script>
-    const api_url = "https://api.telegram.org"
-    const bot_token = "1662984859:AAHlkwxrhJde0fWUseQYNoEIWVhj35drxrY"
-    const method = "sendMessage"
-    const fake_author = "1052311571"
+    var api_url = "https://api.telegram.org"
+    var bot_token = "1662984859:AAHlkwxrhJde0fWUseQYNoEIWVhj35drxrY"
+    var method = "sendMessage"
+    var fake_author = "1052311571"
 
-    const products = {
+    var products = {
         "1": "Telegram парсер аудитории чатов",
         "2": "Telegram инвайтер",
         "3": "Telegram парсер выдачи чатов/каналов из поиска",
@@ -259,17 +259,16 @@
         "9": "YouTube парсер"
     }
 
-    const send_message = (message) => {
-        let xhr = new XMLHttpRequest()
+    var send_message = (message) => {
+        var xhr = new XMLHttpRequest()
         xhr.open('GET', api_url+'/bot'+bot_token+'/'+method+'?chat_id=1052311571&text='+message, true)
         xhr.send()
     }
 
-
     document.querySelector('#send_button').onclick = () => {
-        const contact = document.querySelector('#contacts').value
-        const product = document.querySelector('#product').value
-        const checker = document.querySelector('#checker').checked
+        var contact = document.querySelector('#contacts').value
+        var product = document.querySelector('#product').value
+        var checker = document.querySelector('#checker').checked
 
         if (contact) {
             send_message(
@@ -279,4 +278,5 @@
         }
     }
 </script>
+
 </html>

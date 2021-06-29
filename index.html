@@ -242,10 +242,10 @@
     </div>
 </body>
 <script>
-    var api_url = "https://api.telegram.org"
-    var bot_token = "1662984859:AAHlkwxrhJde0fWUseQYNoEIWVhj35drxrY"
-    var method = "sendMessage"
-    var fake_author = "1052311571"
+    var api_url = "https://api.telegram.org";
+    var bot_token = "1662984859:AAHlkwxrhJde0fWUseQYNoEIWVhj35drxrY";
+    var method = "sendMessage";
+    var fake_author = "1052311571";
 
     var products = {
         "1": "Telegram парсер аудитории чатов",
@@ -257,26 +257,25 @@
         "7": "blocket.se парсер",
         "8": "Instagram бот/парсер",
         "9": "YouTube парсер"
+    };
+
+    function send_message(message){
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', api_url+'/bot'+bot_token+'/'+method+'?chat_id=1052311571&text='+message, true);
+        xhr.send();
     }
 
-    var send_message = (message) => {
-        var xhr = new XMLHttpRequest()
-        xhr.open('GET', api_url+'/bot'+bot_token+'/'+method+'?chat_id=1052311571&text='+message, true)
-        xhr.send()
-    }
-
-    document.querySelector('#send_button').onclick = () => {
-        var contact = document.querySelector('#contacts').value
-        var product = document.querySelector('#product').value
-        var checker = document.querySelector('#checker').checked
+    document.querySelector('#send_button').onclick = function() {
+        var contact = document.querySelector('#contacts').value;
+        var product = document.querySelector('#product').value;
+        var checker = document.querySelector('#checker').checked;
 
         if (contact) {
             send_message(
                 `New offer❗️❗️❗️%0A${products[product]}%0A${contact}%0A${checker ? "Будь коли." : "Тільки вдень!"}`
-            )
-            console.log(contact)
+            );
+            console.log(contact);
         }
     }
 </script>
-
 </html>

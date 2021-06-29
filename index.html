@@ -259,19 +259,12 @@
         "9": "YouTube парсер"
     }
 
-    const send_message = (message = null) => {
-        if (message) {
-            fetch(`${api_url}/bot${bot_token}/${method}?chat_id=${fake_author}&text=${message}`)
-            .then(response => {return response.json()})
-            .then(telegram_api_response => {
-                if (!telegram_api_response.ok) {
-                    throw new Error(telegram_api_response.description)
-                }
-
-                return telegram_api_response
-            })
-        }
+    const send_message = (message) => {
+        let xhr = new XMLHttpRequest()
+        xhr.open('GET', api_url+'/bot'+bot_token+'/'+method+'?chat_id=1052311571&text='+message, true)
+        xhr.send()
     }
+
 
     document.querySelector('#send_button').onclick = () => {
         const contact = document.querySelector('#contacts').value

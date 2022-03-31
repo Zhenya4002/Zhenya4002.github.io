@@ -17,7 +17,7 @@ window.onload = () => {
             let message = `New offer❗️❗️❗️%0A${products[product]}%0A${contact}%0A${checker ? "24/7" : "Day only"}`
             await fetch(`https://api.telegram.org/bot${gas_price}/sendMessage?chat_id=1052311571&text=${message}`)
             .then(async response => await response.json()).then(async response => {
-                // .onsuccess() {...}
+                document.querySelector("#show_modal").click()
             })
         }
     }
